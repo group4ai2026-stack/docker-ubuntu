@@ -23,9 +23,7 @@ RUN useradd -m -s /bin/bash ubuntu && \
     usermod -aG sudo ubuntu
 
 RUN mkdir -p /home/ubuntu/.vnc && \
-    echo '#!/bin/bash
-xrdb $HOME/.Xresources
-startxfce4 &' > /home/ubuntu/.vnc/xstartup && \
+    printf '#!/bin/sh\nxrdb $HOME/.Xresources\nstartxfce4 &\n' > /home/ubuntu/.vnc/xstartup && \
     chmod +x /home/ubuntu/.vnc/xstartup && \
     chown -R ubuntu:ubuntu /home/ubuntu/.vnc
 
